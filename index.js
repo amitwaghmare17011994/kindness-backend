@@ -1,12 +1,16 @@
 
 
-const express = require('express')
-const path = require('path')
+import express from 'express'
+import { getUser, registerUser } from './src/handlers/index.js'
+
 const PORT = process.env.PORT || 5000
 const app = express()
 
-app.get('/', (req, res) => res.send('Hello'))
+app.get('/', (req, res) => res.send('Init'))
 
-app.get('/api/', (req, res) => res.send('api'))
+app.get('/user/', getUser)
+
+app.get('/register-user/', registerUser)
+
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))
