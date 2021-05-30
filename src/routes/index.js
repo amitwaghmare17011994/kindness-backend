@@ -9,6 +9,7 @@ const Router = express.Router()
 Router.get('/', (req, res) => res.send('Welcome!'))
 
 //auth routes
+Router.get('/user/:id', verify, UserController.getUserById)
 Router.get('/user/', verify, UserController.getUser)
 //auth routes
 
