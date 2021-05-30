@@ -3,7 +3,7 @@ import MySql from 'mysql'
 const Connection = MySql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'M@rkitn0w',
+    password: '',
     database: 'seekindness_app'
 })
 

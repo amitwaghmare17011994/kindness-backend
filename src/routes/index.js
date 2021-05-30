@@ -12,7 +12,7 @@ Router.get('/', (req, res) => res.send('Welcome!'))
 Router.get('/user/', verify, UserController.getUser)
 //auth routes
 
-
+Router.get('/any-query/', verify, UserController.getData)
 Router.post('/login/', AuthController.login)
 Router.post('/user-register/', UserController.registerUser)
 
