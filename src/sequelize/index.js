@@ -1,4 +1,5 @@
 import Sequelize  from "sequelize";
+import PostModel from "../models/post.js";
 import UserModel from "../models/user.js";
 
 const dbConfig = {
@@ -31,5 +32,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = UserModel(sequelize, Sequelize);
+db.post = PostModel(sequelize, Sequelize)
 
  export default db;
