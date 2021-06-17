@@ -1,5 +1,7 @@
 import Sequelize  from "sequelize";
+import CommentModel from "../models/commentModal.js";
 import PostModel from "../models/post.js";
+import PostMetaModel from "../models/postMeta.js";
 import UserModel from "../models/user.js";
 
 const dbConfig = {
@@ -33,5 +35,7 @@ db.sequelize = sequelize;
 
 db.user = UserModel(sequelize, Sequelize);
 db.post = PostModel(sequelize, Sequelize)
+db.postMeta = PostMetaModel(sequelize, Sequelize)
+db.comment = CommentModel(sequelize, Sequelize)
 
  export default db;

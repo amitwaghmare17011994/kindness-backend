@@ -25,15 +25,21 @@ const PostModel = (sequelize, Sequelize) => {
         post_type: {type: Sequelize.STRING},
         post_mime_type: {type: Sequelize.STRING},
         // comment_count: 0
+        post_author: {
+          type: Sequelize.INTEGER,
+          references: {
+              // This is a reference to another model
+              model: UserModel,
+
+              // This is the column name of the referenced model
+              key: 'ID'
+          }
+        }
     }, {
         timestamps: false
       }
     );
   };
 
-//   PostModel.belongsTo(UserModel, {
-//       as: 'author',
-//       foreignKey: 'post_author'
-//   });
 
 export default PostModel
