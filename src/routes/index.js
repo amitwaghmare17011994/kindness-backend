@@ -1,6 +1,7 @@
 import express from 'express'
 import AuthController from '../controllers/auth.controller/index.js'
 import commentController from '../controllers/comment.controller/index.js'
+import postController from '../controllers/post.controller/index.js'
 import PostController from '../controllers/post.controller/index.js'
 import UserController from '../controllers/user.controller/index.js'
 import verify from './auth.js'
@@ -20,6 +21,8 @@ Router.get('/any-query/', UserController.getData)
 Router.post('/login/', AuthController.login)
 Router.post('/user-register/', UserController.registerUser)
 Router.get('/post-comment/:id', verify, commentController.getCommentRelatedToPost)
+Router.post('/create-post/', verify, postController.createPost)
+
 
 
 

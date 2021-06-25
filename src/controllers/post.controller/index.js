@@ -25,12 +25,12 @@ class PostController {
                 post_date_gmt: new Date(),
                 post_content: req.body.content,
                 post_title: req.body.content,
-                post_status: 'Publish', // Inherit
-                comment_status: 'Open', // Closed for bisso & Closed for attachment 
+                post_status: req.body.postStatus, // 'Publish', // Inherit
+                comment_status: req.body.commentStatus, // 'Open', // Closed for bisso & Closed for attachment 
                 post_modified: new Date(),
                 post_modified_gmt: new Date(),
-                post_type: 'act', // bispo
-                post_name: ''  // tittle for bisso
+                post_type:  req.body.postType, //'act', // bispo
+                post_name: req.body.postName  // tittle for bisso
                 // post_content_filtered: {type: Sequelize.STRING},
                 // post_parent: 0,
                 // menu_order: 0,
@@ -46,14 +46,15 @@ class PostController {
             })
 
 
-            const postMetaList = Object.keys(req.body.postMeta).map(function(key) {
+            const postMeta = JSON.parse(req.body.postMeta);
+            const postMetaList = Object.keys(postMeta).map(function(key) {
                 return {
-                    post_id: post.ID,
+                    post_id: post.id,
                     meta_key: key,
-                    meta_value: req.body.postMeta[key],
+                    meta_value: postMeta[key],
                 }
             })
-            await this.postMeta.bulkCreate(postMetaList);
+            await this.PostMeta.bulkCreate(postMetaList);
 
 
             // Meta: { //POST
@@ -127,3 +128,5 @@ class PostController {
 
 
 export default new PostController()
+
+

@@ -20,7 +20,7 @@ const PostModel = (sequelize, Sequelize) => {
         post_modified: {type: Sequelize.DATE},
         post_modified_gmt: {type: Sequelize.DATE},
         post_content_filtered: {type: Sequelize.STRING},
-        // post_parent: 0,
+        post_parent: {type: Sequelize.STRING},
         // menu_order: 0,
         post_type: {type: Sequelize.STRING},
         post_mime_type: {type: Sequelize.STRING},
