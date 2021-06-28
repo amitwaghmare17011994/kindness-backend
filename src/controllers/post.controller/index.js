@@ -1,6 +1,6 @@
-import { DBQuery } from "../../collections/user.collection/index.js"
+import Sequelize  from "sequelize";
 import db from "../../sequelize/index.js"
-
+const Op = Sequelize.Op;
 class PostController {
     Post = db.post
     PostMeta = db.postMeta
@@ -68,26 +68,45 @@ class PostController {
             //     upwardCnt: ''
 
 
-            /*  Bisoo: {
-                sendername: name1, name2, 
-                sendermail: mail1, mail2, 
-                recipientname: namer1, namer2, 
-                recipientemail: mailr1, mailr2,
-                card_template: Background Colour and Overlay Image
-                main_header: New Test Bissoo
-                message: Hii There test description
-                font_colour: #000000
-                card_colour: #ffcc4c
-                imageId: 2463 we need to create a post for it and will add image id there.
-                card_signing: Public/Private
-                card_viewing:  Public/Private
+            // Bisoo: {
+            //     sendername: name1, name2, 
+            //     sendermail: mail1, mail2, 
+            //     recipientname: namer1, namer2, 
+            //     recipientemail: mailr1, mailr2,
+            //     card_template: Background Colour and Overlay Image
+            //     main_header: New Test Bissoo
+            //     message: Hii There test description
+            //     font_colour: #000000
+            //     card_colour: #ffcc4c
+            //     imageId: 2463 we need to create a post for it and will add image id there.
+            //     card_signing: Public/Private
+            //     card_viewing:  Public/Private
 
-            }*/
+            // }
 
             res.send({status: 'Ok'})
         }
         catch (err) {
             res.status(500).send(err)
+        }
+    }
+
+    getAllPostMeta = async (req, res) => {
+        try {
+            const postIdList = JSON.parse(req.body.postIdList)
+            const allPostMeta = await this.PostMeta.findAll(
+                {
+                    where: {
+                      post_id: {
+                        [Op.in]: postIdList
+                      }
+                    }
+                  }
+            )
+            res.send(allPostMeta)
+        }
+        catch (err) {
+            res.    status(500).send(err)
         }
     }
 

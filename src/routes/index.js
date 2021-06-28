@@ -10,20 +10,21 @@ const Router = express.Router()
 
 
 Router.get('/', (req, res) => res.send('Welcome!'))
+Router.post('/login/', AuthController.login)
 
 //auth routes
 Router.get('/user/:id', verify, UserController.getUserById)
 Router.get('/user/', verify, UserController.getUser)
 Router.get('/post/:id', verify, PostController.getPostById)
 Router.get('/post/', verify, PostController.getAllPost)
+Router.post('/get-post-meta/', verify, PostController.getAllPostMeta)
 Router.get('/user-post/:id', verify, PostController.getPostByUserId)
 Router.get('/any-query/', UserController.getData)
-Router.post('/login/', AuthController.login)
 Router.post('/user-register/', UserController.registerUser)
 Router.get('/post-comment/:id', verify, commentController.getCommentRelatedToPost)
 Router.post('/create-post/', verify, postController.createPost)
 
 
-
+//Follow unfollow users like, upvote, delete post, comment
 
 export default Router
