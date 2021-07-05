@@ -4,6 +4,7 @@ import commentController from '../controllers/comment.controller/index.js'
 import postController from '../controllers/post.controller/index.js'
 import PostController from '../controllers/post.controller/index.js'
 import UserController from '../controllers/user.controller/index.js'
+import StripeController from '../controllers/stripe.controller/index.js'
 import verify from './auth.js'
 
 const Router = express.Router()
@@ -22,6 +23,7 @@ Router.get('/any-query/', UserController.getData)
 Router.post('/user-register/', UserController.registerUser)
 Router.get('/post-comment/:id', verify, commentController.getCommentRelatedToPost)
 Router.post('/create-post/', verify, postController.createPost)
+Router.post('/create-payment-intent', verify, StripeController.paymentIntent)
 
 
 //Follow unfollow users like, upvote, delete post, comment
