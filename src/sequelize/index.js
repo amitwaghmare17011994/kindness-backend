@@ -18,7 +18,7 @@ const dbConfig = {
 //     HOST: "172.105.97.217",
 //     USER: "adminapp",
 //     PASSWORD: "5as89jnod1a",
-//     DB: "seekindness_app",
+//     DB: "seekindness_app", 
 //     dialect: "mysql",
 //     pool: {max: 5,min: 0,acquire: 30000,idle: 10000}
 // };

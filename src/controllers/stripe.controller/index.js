@@ -9,8 +9,8 @@ class StripeController {
 
   paymentIntent = async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: 3000, //30
-      currency: "usd",
+      amount: req.body.amount, //30
+      currency: "INR",
     });
     res.send({
       clientSecret: paymentIntent.client_secret,
