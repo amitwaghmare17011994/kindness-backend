@@ -39,7 +39,7 @@ class PostController {
         post_modified: new Date(),
         post_modified_gmt: new Date(),
         post_type: req.body.postType, //'act', // bispo
-        post_name: req.body.postName, // tittle for bisso
+        post_name: req.body.postName || req.body.content, // tittle for bisso
         // post_content_filtered: {type: Sequelize.STRING},
         // post_parent: 0,
         // menu_order: 0,
