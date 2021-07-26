@@ -12,13 +12,13 @@ const Router = express.Router()
 
 Router.get('/', (req, res) => res.send('Welcome!'))
 Router.post('/login/', AuthController.login)
-Router.post('/start-app/', AuthController.startApp)
+Router.get('/start-app/', AuthController.startApp)
 Router.post('/register/', AuthController.register)
 
 //auth routes
 Router.get('/user/:id', verify, UserController.getUserById)
 Router.get('/post/:userId?', verify, PostController.getAllPost)
-Router.get('/post/:id', verify, PostController.getPostById)
+Router.get('/post/:id', PostController.getPostById)
 Router.post('/get-post-meta/', verify, PostController.getAllPostMeta)
 Router.get('/post-comment/:id', isLoggedIn, commentController.getCommentRelatedToPost)
 Router.post('/create-post/', isLoggedIn, postController.createPost)

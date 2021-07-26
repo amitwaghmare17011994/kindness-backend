@@ -26,6 +26,11 @@ class AuthController {
         );
         res.header("auth-user", token).send({
           token,
+          userDetails: {
+            id: allUsers[0].id,
+            name: allUsers[0].display_name,
+            email: allUsers[0].user_email,
+          },
         });
       } else {
         res.status(500).send("user not found.");
@@ -37,7 +42,7 @@ class AuthController {
 
   startApp = async (req, res) => {
     const token = JWT.sign({ _id: Math.random() }, process.env.TOKEN_SERET_KEY);
-    res.header("auth-token", token).send(token);
+    res.header("auth-token", token).send({ token });
   };
 
   register = async (req, res) => {
