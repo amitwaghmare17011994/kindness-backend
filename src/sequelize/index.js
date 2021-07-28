@@ -7,9 +7,9 @@ import UserModel from "../models/user.js";
 //Local
 const dbConfig = {
     HOST: "localhost",
-    USER: "root",
-    PASSWORD: "",
-    DB: "seekindness_app",
+    USER: "admin",
+    PASSWORD: "pass$33k",
+    DB: "seekindness_staging",
     dialect: "mysql",
     pool: {max: 5,min: 0,acquire: 30000,idle: 10000}
 };
