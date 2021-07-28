@@ -26,6 +26,22 @@ class PostController {
     }
   };
 
+  initiateBisoo = async (req, res) => {
+    const post = await this.Post.create({
+      post_author: "",
+      post_date: "",
+      post_date_gmt: "",
+      post_content: "",
+      post_title: "",
+      post_status: "",
+      comment_status: "",
+      post_type: "",
+      post_name: "",
+    });
+
+    res.send({ id: post.id });
+  };
+
   createPost = async (req, res) => {
     try {
       const post = await this.Post.create({
@@ -51,6 +67,10 @@ class PostController {
         // to_ping: {type: Sequelize.STRING},
         // pinged: {type: Sequelize.STRING},
         // post_excerpt: {type: Sequelize.STRING},
+      });
+
+      post.update({
+        guid: `https://seekindness.org/${req.headers.host}/${req.body.postType}/${post.id}`,
       });
 
       const postMeta = JSON.parse(req.body.postMeta);
@@ -89,7 +109,7 @@ class PostController {
 
       // }
 
-      res.send({ status: "Ok" });
+      res.status(200).send({ status: "Ok" });
     } catch (err) {
       res.status(500).send(err);
     }
@@ -119,7 +139,7 @@ class PostController {
       res.status(500).send(err);
     }
   };
-  
+
   getPostLikedByUser = async (req, res) => {
     try {
       const allPost = await this.PostMeta.findAll({
