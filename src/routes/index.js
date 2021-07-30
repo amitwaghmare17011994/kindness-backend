@@ -6,6 +6,7 @@ import PostController from "../controllers/post.controller/index.js";
 import UserController from "../controllers/user.controller/index.js";
 import StripeController from "../controllers/stripe.controller/index.js";
 import verify, { isLoggedIn } from "./auth.js";
+import imageController from "../controllers/image.controller/index.js";
 
 const Router = express.Router();
 
@@ -16,6 +17,7 @@ Router.post("/register/", AuthController.register);
 Router.get("/initiateBisoo/", isLoggedIn, PostController.initiateBisoo);
 
 //auth routes
+// Router.post("/upload",  imageController.uploadImage);
 Router.get("/user/:id", verify, UserController.getUserById);
 Router.get("/post/:userId?", verify, PostController.getAllPost);
 Router.get("/post/:id", PostController.getPostById);
