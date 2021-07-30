@@ -1,15 +1,12 @@
 import express from "express";
-import dotenv from "dotenv";
 import Routes from "./src/routes/index.js";
 import db from "./src/sequelize/index.js";
 import multer from "multer";
 import path from "path";
 
-dotenv.config();
-
+ 
 const PORT = process.env.PORT || 5000;
 const app = express();
-
 app.use(express.static("var/www/"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
