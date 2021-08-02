@@ -18,7 +18,6 @@ app.use(Routes);
  
 db.sequelize.sync();
 
- 
-app.post("/upload", type,imageController.uploadImage);
+app.post("/upload/:id", type,imageController.uploadImage);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
