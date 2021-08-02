@@ -42,6 +42,26 @@ class PostController {
     res.send({ id: post.id });
   };
 
+  createPostWithImage = async (req, imageLink) => {
+    const post = await this.Post.create({
+      post_author: req.params.id,
+      post_date: new Date(),
+      post_date_gmt: new Date(),
+      post_content: "",
+      post_title: "Add picture",
+      post_status: "Inherit",
+      comment_status: "open",
+      post_modified: new Date(),
+      post_modified_gmt: new Date(),
+      post_type: "attachment",
+      post_name: "add-picture",
+      post_mime_type: "image/jpeg",
+      guid: `http://${req.headers.host}/${imageLink}`,
+    });
+
+    return post.dataValues;
+  };
+
   createPost = async (req, res) => {
     try {
       const post = await this.Post.create({
@@ -109,7 +129,7 @@ class PostController {
 
       // }
 
-      res.status(200).send({ status: "Ok" });
+      res.status(200).send({ status: "Ok", data: { ...post, postMeta } });
     } catch (err) {
       res.status(500).send(err);
     }
