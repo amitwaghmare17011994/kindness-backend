@@ -7,23 +7,23 @@ import UserModel from "../models/user.js";
 
 dotenv.config();
 
-const dbConfig = {
-  HOST: process.env.HOST,
-  USER: process.env.DB_USER,
-  PASSWORD: process.env.PASSWORD,
-  DB: process.env.DB,
-  dialect: "mysql",
-  pool: { max: 5, min: 0, acquire: 30000, idle: 10000 },
-};
-
 // const dbConfig = {
-//     HOST: "172.105.97.217",
-//     USER: "adminapp",
-//     PASSWORD: "5as89jnod1a",
-//     DB: "seekindness_app",
-//     dialect: "mysql",
-//     pool: {max: 5,min: 0,acquire: 30000,idle: 10000}
+//   HOST: process.env.HOST,
+//   USER: process.env.DB_USER,
+//   PASSWORD: process.env.PASSWORD,
+//   DB: process.env.DB,
+//   dialect: "mysql",
+//   pool: { max: 5, min: 0, acquire: 30000, idle: 10000 },
 // };
+
+const dbConfig = {
+    HOST: "172.105.97.217",
+    USER: "adminapp",
+    PASSWORD: "5as89jnod1a",
+    DB: "seekindness_app",
+    dialect: "mysql",
+    pool: {max: 5,min: 0,acquire: 30000,idle: 10000}
+};
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
