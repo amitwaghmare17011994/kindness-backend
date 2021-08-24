@@ -151,6 +151,32 @@ class PostController {
     }
   };
 
+  updatePostMeta = async (req, res) => {
+    try {
+      const postMeta = JSON.parse(req.body.postMeta);
+      const postId = req.body.postId;
+      await this.PostMeta.destroy({
+        where: {
+          post_id: postId,
+          meta_key: {
+            [Op.in]: [Object.keys(postMeta).map((key) => key)],
+          },
+        },
+      });
+      const postMetaList = Object.keys(postMeta).map(function (key) {
+        return {
+          post_id: postId,
+          meta_key: key,
+          meta_value: postMeta[key],
+        };
+      });
+      await this.PostMeta.bulkCreate(postMetaList);
+      res.send({status: 200});
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  };
+
   getPostById = async (req, res) => {
     try {
       const allPost = await this.Post.findByPk(req.params.id);

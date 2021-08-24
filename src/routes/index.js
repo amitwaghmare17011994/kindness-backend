@@ -22,6 +22,8 @@ Router.get("/user/:id", verify, UserController.getUserById);
 Router.get("/post/:userId?", verify, PostController.getAllPost);
 Router.get("/post/:id", PostController.getPostById);
 Router.post("/get-post-meta/", verify, PostController.getAllPostMeta);
+Router.post("/update-post-meta/", verify, PostController.updatePostMeta);
+
 Router.get(
   "/post-comment/:id",
   isLoggedIn,
