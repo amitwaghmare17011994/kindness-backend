@@ -17,7 +17,7 @@ dotenv.config();
 // };
 
 const dbConfig = {
-    HOST: "172.105.97.217",
+    HOST: "45.33.44.223",
     USER: "adminapp",
     PASSWORD: "5as89jnod1a",
     DB: "seekindness_app",
